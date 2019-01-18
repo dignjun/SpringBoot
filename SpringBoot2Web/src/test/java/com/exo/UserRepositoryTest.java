@@ -20,10 +20,11 @@ import java.util.Date;
  * 1.@RunWith注解，
  * 2.@SpringBootTest注解
  * <p>
- * 使用@
+ * 注意：上面两个注解并不会加载@Component注解标识的配置。
+ *       服务容器启动之后输出了filter的日志，但是测试并没有输出filter日志。
  */
-//@SpringJUnitConfig
-//@SpringBootConfiguration
+@SpringJUnitConfig
+@SpringBootConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 public class UserRepositoryTest {
