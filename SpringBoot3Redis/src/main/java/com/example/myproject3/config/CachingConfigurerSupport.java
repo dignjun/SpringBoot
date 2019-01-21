@@ -39,11 +39,12 @@ public class CachingConfigurerSupport {
 
     @Bean
     public CacheManager cacheManager(RedisTemplate redisTemplate) {
-        // TODO 这个构造函数没有需要一个RedisTemplate的？还是依赖错了。
-        CacheManager cacheManager = new RedisCacheManager(null, null);
+        // 这个构造函数没有需要一个RedisTemplate的？还是依赖错了。（开始使用的是最新版，现在使用的是1.56版本）
+        CacheManager cacheManager = new RedisCacheManager(redisTemplate);
         return cacheManager;
     }
 
+    @Bean
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
         StringRedisTemplate template = new StringRedisTemplate(factory);
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
