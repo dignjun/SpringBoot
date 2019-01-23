@@ -59,11 +59,10 @@ public class RedisTest {
      * 一般都是在查询数据库的时候自动使用缓存的。如下配置@Cacheable。
      * value值表示的是存入到缓存中的key，值就是返回的结果。
      */
-//    @Test
-//    @Cacheable(value = "user-key")
-//    public void testAuto(){
-//        User aa1 = userRepository.findByUserName("aa1");
-//        System.out.println("若下面没出现“无缓存的时候调用”字样且能打印出数据表示测试成功");
-//        System.out.println(aa1);
-//    }
+    @Test
+    @Cacheable(value = "user-key")
+    public void testAuto(){
+        User aa1 = userRepository.findByUserName("bb2");
+        System.out.println(aa1);
+    }
 }

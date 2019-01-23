@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
+import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheManager;
@@ -15,6 +16,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
 
 
 @Configuration
@@ -37,12 +39,13 @@ public class CachingConfigurerSupport {
         };
     }
 
-    @Bean
-    public CacheManager cacheManager(RedisTemplate redisTemplate) {
-        // 这个构造函数没有需要一个RedisTemplate的？还是依赖错了。（开始使用的是最新版，现在使用的是1.56版本）
-        CacheManager cacheManager = new RedisCacheManager(redisTemplate);
-        return cacheManager;
-    }
+//    @Bean
+//    public CacheManager cacheManager(RedisTemplate redisTemplate) {
+//        // 1.5.6版本有这个构造，切换到新版本的2.1.1版本之后实现就改变了
+//        RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
+//        cacheManager.setDefaultExpiration(10);
+//        return cacheManager;
+//    }
 
     @Bean
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
