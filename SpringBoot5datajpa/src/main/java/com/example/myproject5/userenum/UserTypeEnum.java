@@ -1,14 +1,11 @@
 package com.example.myproject5.userenum;
 
 public enum UserTypeEnum {
-    student,worker,teacher;
+    STUDENT("学生"),
+    TEACHER("老师"),
+    MASTER("校长");
 
-    UserTypeEnum() {
+    UserTypeEnum(String type) {
     }
 
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }
